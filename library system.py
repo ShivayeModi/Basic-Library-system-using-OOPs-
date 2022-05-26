@@ -70,9 +70,16 @@ class Library:
        self.display()
        name = input("Enter your name: ")
        booknum=input("Enter the serial number of the book you want to issue: ")
-       if (self.book_catalogue)[int(booknum)-1] not in issueDic.values():
+       if int(booknum)-1 not in list(range(len(self.book_catalogue))):
+            print("Choose the serial number only provided in the given range of book catalogue.\n Wait for a while and type your response again")
+            time.sleep(3)
+            self.issueTheBook()
+
+       elif (self.book_catalogue)[int(booknum)-1] not in issueDic.values():
             issueDic[name]=(self.book_catalogue)[int(booknum)-1]
             print("You have issued the book titled " + (self.book_catalogue)[int(booknum)-1])
+
+
        else:
             print("Sorry " + name+ " ,this book is already issued by someone else. We hope that you get it soon.")
     def issuedBookList(self):
